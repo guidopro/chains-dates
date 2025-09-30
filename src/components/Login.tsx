@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, provider, logout } from "../firebase";
+import { auth, provider, logout, createUserProfile } from "../firebase";
 import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 
@@ -10,6 +10,9 @@ async function handleGoogleSignIn() {
     const user = result.user;
     console.log("Signed in user:", user);
     // ... (handle successful login, e.g., redirect or update UI)
+    // Create user profile in Firestore if it doesn't exist
+    await createUserProfile(user);
+
     return user;
   } catch (error) {
     // Handle Errors here.
