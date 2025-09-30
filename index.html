@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Calendar API Quickstart</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chains & Dates</title>
   </head>
   <body>
-    <p>Google Calendar API Quickstart</p>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-    <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
-    <button id="create_event_button" onclick="addEventToCalendar()">
-      Create Event
-    </button>
-
-    <pre id="content" style="white-space: pre-wrap"></pre>
-
-    <script type="module" src="/src/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
