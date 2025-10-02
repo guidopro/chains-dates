@@ -2,13 +2,20 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Events collection
     match /events/{eventId} {
+
       // Only staff can create events
       allow create: if request.auth != null &&
         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "staff";
 
       // Everyone logged in can read
       allow read: if request.auth != null;
+
+      // Members can sign up safely
+      allow update: if request.auth != null &&
+  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "member"
     }
   }
 }
