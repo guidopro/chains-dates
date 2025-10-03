@@ -6,6 +6,9 @@ service cloud.firestore {
     // Events collection
     match /events/{eventId} {
 
+      // Anyone can read data
+      allow read: if request.auth != null; 
+
       // Only staff can create events
       allow create: if request.auth != null &&
         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "staff";
