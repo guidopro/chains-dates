@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import {
   collection,
   getDocs,
@@ -46,14 +47,14 @@ export default function EventList() {
   }, []);
 
   const handleAttend = async (eventId: string) => {
-    if (!user) return alert("Please log in first");
+    if (!user) return toast("Please log in first");
 
     const eventRef = doc(db, "events", eventId);
     await updateDoc(eventRef, {
       attendees: arrayUnion(user.uid),
     });
 
-    alert("You’re signed up for the event!");
+    toast("You’re signed up for the event!");
   };
 
   return (
@@ -70,6 +71,7 @@ export default function EventList() {
           >
             Attend
           </button>
+          <ToastContainer />
           {/* Step 3 will go here later: Add to Google Calendar button */}
         </div>
       ))}
