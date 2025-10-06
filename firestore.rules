@@ -3,11 +3,23 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Users collection
+    
+    match /users/{userId} {
+      // Users can read their own profile
+      allow get: if request.auth != null && request.auth.uid == userId;
+
+      // Allow creating their own user doc if it doesn't already exist
+      allow create: if request.auth != null &&
+        request.auth.uid == userId &&
+        !exists(/databases/$(database)/documents/users/$(userId));
+    }
+    
     // Events collection
     match /events/{eventId} {
 
       // Anyone can read data
-      allow read: if request.auth != null; 
+      allow read: if true; 
 
       // Only staff can create events
       allow create: if request.auth != null &&
