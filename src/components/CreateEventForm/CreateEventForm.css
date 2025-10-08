@@ -1,0 +1,66 @@
+form {
+  border-radius: 5px;
+  background-color: #211038;
+  padding: 20px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="datetime-local"],
+select {
+  width: auto;
+  padding: 2px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.free-event {
+  width: auto;
+  padding: 2px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.datetime-free-event {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 2px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  margin: 8px 0;
+  display: flex;
+  justify-self: center;
+  box-sizing: border-box;
+}

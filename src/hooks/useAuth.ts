@@ -6,6 +6,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
+  const [isStaff, setIsStaff] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,10 +25,21 @@ export function useAuth() {
             createdAt: new Date(),
           });
           console.log("✅ New user document created");
+
+          // not staff if just created
+          setIsStaff(false);
+        } else {
+          const data = userSnap.data();
+          // check role
+          const staffStatus = data.role === "staff";
+          setIsStaff(staffStatus);
+          console.log(`👤 User role: ${data.role}`);
         }
+
         setUser(firebaseUser);
       } else {
         setUser(null);
+        setIsStaff(false);
       }
       setLoading(false);
     });
@@ -35,5 +47,5 @@ export function useAuth() {
     return unsubscribe; // cleanup listener
   }, []);
 
-  return { user, loading };
+  return { user, isStaff, loading };
 }
