@@ -1,25 +1,24 @@
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./components/Login";
-import { TestEvents } from "./components/TestEvents";
 import { CreateEventForm } from "./components/CreateEventForm/CreateEventForm";
-import { Navbar } from "./components/Navbar";
-import EventList from "./components/EventList";
+import { Navbar } from "./components/Navbar/Navbar";
+import EventList from "./components/EventList/EventList";
 import { useAuth } from "./hooks/useAuth";
+import EventPage from "./components/EventPage/EventPage";
 
 function App() {
   const { isStaff } = useAuth();
   return (
     <>
-      <h1>Chains & Dates</h1>
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/test-events" element={<TestEvents />} />
         {isStaff && (
           <Route path="/create-event" element={<CreateEventForm />} />
         )}
 
-        <Route path="/list-events" element={<EventList />} />
+        <Route path="/events" element={<EventList />} />
+        <Route path="/events/:id" element={<EventPage />} />
       </Routes>
     </>
   );

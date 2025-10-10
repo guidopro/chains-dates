@@ -1,0 +1,26 @@
+.event-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: 2rem;
+  padding: 2rem;
+}
+
+.event-card {
+  display: inline;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.event-title {
+  text-align: center;
+}
+
+.event-description {
+  font-weight: 100;
+}
+
+.event-time {
+  display: flex;
+}

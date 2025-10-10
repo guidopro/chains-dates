@@ -1,0 +1,11 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: darkblue;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
