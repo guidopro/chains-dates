@@ -22,11 +22,8 @@ service cloud.firestore {
       allow read: if true; 
 
       // Only staff can create events
-      allow create: if request.auth != null &&
+      allow create, update: if request.auth != null &&
         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "staff";
-
-      // Everyone logged in can read
-      allow read: if request.auth != null;
 
       // Members can sign up safely
       allow update: if request.auth != null &&
