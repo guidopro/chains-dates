@@ -4,6 +4,7 @@ import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/useAuth";
+import { AddToCalendar } from "../../AddToCalendar";
 
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
@@ -36,7 +37,7 @@ export default function EventPage() {
         Attend
       </button>
       <ToastContainer />
-      {/* Step 3 will go here later: Add to Google Calendar button */}
+      <AddToCalendar event={event} />
     </div>
   );
 }
