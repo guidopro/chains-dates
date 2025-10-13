@@ -6,6 +6,9 @@ import { db } from "../../firebase";
 import { useAuth } from "../../hooks/useAuth";
 import { AddToCalendar } from "../../AddToCalendar";
 
+// styling
+import "./EventPage.css";
+
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
   const { event, loading, error } = useEvent(id!);
@@ -27,13 +30,15 @@ export default function EventPage() {
 
   return (
     <div className="event-page">
+      <img src={event.imageUrl} alt="" className="event-img" />
       <h3 className="event-title">{event.title}</h3>
+      <p>By: {event.createdByName}</p>
       <p className="event-description">{event.description}</p>
       <p className="event-date">{new Date(event.date).toLocaleString()}</p>
       <p>
         <strong>Price:</strong> {event.isFree ? "Free" : "Paid"}
       </p>
-      <button onClick={() => handleAttend(id)} className="attend-button">
+      <button onClick={() => handleAttend(id!)} className="attend-button">
         Attend
       </button>
       <ToastContainer />

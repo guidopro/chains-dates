@@ -1,3 +1,9 @@
 .event-page {
-  display: flex;
+  display: block;
+}
+
+.event-img {
+  border-radius: 8px;
+  max-width: 80%;
+  height: auto;
 }

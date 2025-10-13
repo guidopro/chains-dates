@@ -10,6 +10,7 @@ export interface EventData {
   date: string;
   createdAt: string;
   createdBy: string;
+  createdByName: string;
   imageUrl?: string;
 }
 
@@ -26,13 +27,11 @@ export function useEvent(eventId: string) {
 
         if (eventSnap.exists()) {
           const data = eventSnap.data();
-          console.log(data, "data in hook");
 
           const date = data.date.toDate().toISOString();
           const createdAt = data.createdAt.toDate().toISOString();
           const createdBy = data.createdBy.id;
 
-          // setEvent(eventSnap.data() as EventData);
           setEvent({
             title: data.title,
             description: data.description,
@@ -41,6 +40,7 @@ export function useEvent(eventId: string) {
             date: date,
             createdAt: createdAt,
             createdBy: createdBy,
+            createdByName: data.createdByName,
             imageUrl: data?.imageUrl,
           });
         } else {

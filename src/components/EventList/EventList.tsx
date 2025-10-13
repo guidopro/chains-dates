@@ -10,8 +10,9 @@ interface EventFirestore {
   title: string;
   description: string;
   date: string;
-  createdBy: string;
+  createdByName: string;
   attendees: string[];
+  imageUrl?: string;
 }
 
 export default function EventList() {
@@ -28,9 +29,10 @@ export default function EventList() {
           id: docSnap.id,
           title: data.title,
           description: data.description,
-          createdBy: data.createdBy,
+          createdByName: data.createdByName,
           attendees: data.attendees || [],
           date: data.date.toDate().toISOString(),
+          imageUrl: data.imageUrl,
         };
       });
 
@@ -50,11 +52,18 @@ export default function EventList() {
             to={`/events/${event.id}`}
             className="event-card"
           >
-            <h3 className="event-title">{event.title}</h3>
-            <p className="event-description">{event.description}</p>
+            <img
+              src={event.imageUrl || null}
+              alt=""
+              className="event-list-img"
+            />
             <p className="event-date">
               {new Date(event.date).toLocaleString()}
             </p>
+            <h3 className="event-title">{event.title}</h3>
+            <p className="event-description">{event.description}</p>
+            <p>By: {event.createdByName}</p>
+            <p>Attendees: {event.attendees.length}</p>
           </Link>
         ))}
       </div>

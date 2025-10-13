@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { db } from "../../firebase";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, Timestamp, doc } from "firebase/firestore";
+import { useAuth } from "../../hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "./CreateEventForm.css";
 
@@ -10,28 +10,22 @@ export function CreateEventForm() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [isFree, setIsFree] = useState(true);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // current logged-in user
+  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      let imageUrl = "";
-
-      // Upload image if provided
-      if (imageFile) {
-        const imageRef = ref(
-          storage,
-          `event-images/${imageFile.name}-${Date.now()}`
-        );
-        await uploadBytes(imageRef, imageFile);
-        imageUrl = await getDownloadURL(imageRef);
-      }
-
       // Convert HTML date input to Firestore Timestamp
       const eventDate = Timestamp.fromDate(new Date(date));
+
+      // turn user into firestore ref for db
+      const firestoreRef = doc(db, "user", user.uid);
 
       await addDoc(collection(db, "events"), {
         title,
@@ -41,6 +35,8 @@ export function CreateEventForm() {
         imageUrl,
         attendees: [],
         createdAt: new Date(),
+        createdBy: firestoreRef,
+        createdByName: user?.displayName || "unknown",
       });
 
       toast("Event created successfully!");
@@ -48,7 +44,7 @@ export function CreateEventForm() {
       setDescription("");
       setDate("");
       setIsFree(true);
-      setImageFile(null);
+      setImageUrl("");
     } catch (error) {
       console.error("Error creating event:", error);
       toast("Error creating event.");
@@ -96,9 +92,10 @@ export function CreateEventForm() {
         </label>
       </div>
       <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+        type="url"
+        placeholder="Image URL (https://...)"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
       />
 
       <button

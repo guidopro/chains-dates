@@ -24,3 +24,8 @@
 .event-time {
   display: flex;
 }
+
+.event-list-img {
+  width: 100px;
+  height: auto;
+}
