@@ -1,9 +1,18 @@
 .event-page {
-  display: block;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .event-img {
   border-radius: 8px;
-  max-width: 80%;
+  width: 80%;
+  max-width: 800px;
   height: auto;
+}
+
+button {
+  margin: 0.5rem;
 }

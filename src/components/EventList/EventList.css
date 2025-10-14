@@ -1,31 +1,67 @@
-.event-list {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  margin: 2rem;
-  padding: 2rem;
+.event-list-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-list-cards {
+  display: flex;
+  flex-direction: column;
+  /* align-self: stretch; */
+}
+
+@media only screen and (min-width: 600px) {
+  .event-list-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .event-card {
-  display: inline;
-  margin: 1rem;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border: 1px solid;
   border-radius: 5px;
+  transition: all 0.2s ease-in-out;
 }
 
-.event-title {
-  text-align: center;
+.event-card:hover {
+  box-shadow: 0 0 2px 1px rgb(30, 51, 146);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.event-description {
-  font-weight: 100;
-}
-
-.event-time {
+.img-container {
   display: flex;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-color: black;
 }
 
 .event-list-img {
-  width: 100px;
+  width: 300px;
   height: auto;
+  border-radius: 8px;
+}
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+}
+
+.event-title {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.event-date {
+  font-weight: 200;
 }

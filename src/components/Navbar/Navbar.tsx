@@ -2,14 +2,17 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import "./Navbar.css";
 
+import logo from "../../assets/disc-golf-basket-svgrepo-com.svg";
+
 export function Navbar() {
   const { isStaff } = useAuth();
   return (
     <>
       <nav className="navbar" role="navigation">
         <div className="navbar-left">
-          <Link to="/" className="logo">
-            <p>Chains & Dates</p>
+          <Link to="/" className="logo-container">
+            <img src={logo} alt="chains & dates logo" className="logo" />
+            <span className="logo-text">Chains & Dates</span>
           </Link>
         </div>
         <div className="navbar-center">

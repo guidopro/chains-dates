@@ -7,7 +7,19 @@
   padding: 1rem;
 }
 
+.navbar-left .logo-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .navbar-left .logo {
+  width: 32px;
+  height: 32px;
+  background: white;
+}
+
+.navbar-left .logo-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;

@@ -13,6 +13,7 @@ interface EventFirestore {
   createdByName: string;
   attendees: string[];
   imageUrl?: string;
+  isFree?: boolean;
 }
 
 export default function EventList() {
@@ -33,6 +34,7 @@ export default function EventList() {
           attendees: data.attendees || [],
           date: data.date.toDate().toISOString(),
           imageUrl: data.imageUrl,
+          isFree: data.isFree,
         };
       });
 
@@ -43,26 +45,31 @@ export default function EventList() {
   }, []);
 
   return (
-    <div className="p-4 space-y-6">
-      <h2 className="text-xl font-bold">Upcoming Events</h2>
-      <div className="event-list">
+    <div className="event-list-page">
+      <h2 className="upcoming-events">Upcoming Events</h2>
+      <div className="event-list-cards">
         {events.map((event) => (
           <Link
             key={event.id}
             to={`/events/${event.id}`}
             className="event-card"
           >
-            <img
-              src={event.imageUrl || null}
-              alt=""
-              className="event-list-img"
-            />
-            <p className="event-date">
+            <div className="img-container">
+              <img
+                src={
+                  event.imageUrl ||
+                  "https://placehold.co/600x400/orange/white?text=Event"
+                }
+                alt=""
+                className="event-list-img"
+              />
+              <div className="top-right">{event.isFree ? "Free" : ""}</div>
+            </div>
+            <small className="event-date">
               {new Date(event.date).toLocaleString()}
-            </p>
+            </small>
             <h3 className="event-title">{event.title}</h3>
-            <p className="event-description">{event.description}</p>
-            <p>By: {event.createdByName}</p>
+            <p>by: {event.createdByName}</p>
             <p>Attendees: {event.attendees.length}</p>
           </Link>
         ))}

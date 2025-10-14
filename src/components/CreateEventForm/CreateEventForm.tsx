@@ -63,14 +63,12 @@ export function CreateEventForm() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
-        // className="w-full p-2 border rounded"
       />
 
       <textarea
         placeholder="Event Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        // className="w-full p-2 border rounded"
       />
 
       <div className="datetime-free-event">
@@ -79,7 +77,6 @@ export function CreateEventForm() {
           value={date}
           onChange={(e) => setDate(e.target.value)}
           required
-          // className="w-full p-2 border rounded"
         />
 
         <label className="free-event">
@@ -98,11 +95,7 @@ export function CreateEventForm() {
         onChange={(e) => setImageUrl(e.target.value)}
       />
 
-      <button
-        type="submit"
-        disabled={loading}
-        // className="bg-green-600 text-white px-4 py-2 rounded"
-      >
+      <button type="submit" disabled={loading}>
         {loading ? "Creating..." : "Create Event"}
       </button>
       <ToastContainer />
