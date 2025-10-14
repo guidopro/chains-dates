@@ -6,23 +6,36 @@ export function Navbar() {
   const { isStaff } = useAuth();
   return (
     <>
-      <nav className="navbar">
-        <Link to="/">
-          <h1>Chains & Dates</h1>
-        </Link>
-        <Link to="" className="links">
-          Home
-        </Link>{" "}
-        |{" "}
-        <Link to="events" className="links">
-          Events
-        </Link>{" "}
-        |{" "}
-        {isStaff && (
-          <Link to="create-event" className="links">
-            Create an Event
+      <nav className="navbar" role="navigation">
+        <div className="navbar-left">
+          <Link to="/" className="logo">
+            <p>Chains & Dates</p>
           </Link>
-        )}
+        </div>
+        <div className="navbar-center">
+          <ul className="nav-links">
+            <li>
+              <Link to="events">Events</Link>
+            </li>
+            <li>
+              <Link to="/">About Us</Link>
+            </li>
+
+            <li>
+              <Link to="/">Contact</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="navbar-right">
+          {isStaff && (
+            <Link to="create-event" className="create-event-icon">
+              <i className="fa-solid fa-person-circle-plus"></i>
+            </Link>
+          )}
+          <Link to="account" className="user-icon">
+            <i className="fa-solid fa-circle-user"></i>
+          </Link>
+        </div>
       </nav>
     </>
   );
