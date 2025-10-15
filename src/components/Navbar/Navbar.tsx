@@ -12,7 +12,7 @@ export function Navbar() {
         <div className="navbar-left">
           <Link to="/" className="logo-container">
             <img src={logo} alt="chains & dates logo" className="logo" />
-            <span className="logo-text">Chains & Dates</span>
+            <span className="logo-text">chains&dates</span>
           </Link>
         </div>
         <div className="navbar-center">
@@ -21,11 +21,7 @@ export function Navbar() {
               <Link to="events">Events</Link>
             </li>
             <li>
-              <Link to="/">About Us</Link>
-            </li>
-
-            <li>
-              <Link to="/">Contact</Link>
+              <Link to="/about-us">About Us</Link>
             </li>
           </ul>
         </div>

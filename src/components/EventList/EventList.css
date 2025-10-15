@@ -24,11 +24,16 @@
 .event-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin: 0.5rem;
   padding: 0.5rem;
   border: 1px solid;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
+}
+
+.event-card p {
+  margin: 0;
 }
 
 .event-card:hover {
@@ -60,8 +65,44 @@
 .event-title {
   text-transform: capitalize;
   text-align: center;
+  margin: 0;
 }
 
 .event-date {
   font-weight: 200;
+}
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: stretch;
+  padding: 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  /* padding: 0.5rem; */
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 5px 5px 1px 1px whitesmoke;
+  transition: all 0.2s ease-in-out;
+}
+
+.row:hover {
+  cursor: pointer;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.list-view img {
+  width: 200px;
+  margin-right: 1.5rem;
+}
+
+.toggle-button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: flex-end;
 }

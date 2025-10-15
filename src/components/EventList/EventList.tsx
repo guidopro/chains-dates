@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
+import ToggleViewButton from "./ToggleViewButton";
 
 import "./EventList.css";
 
@@ -18,6 +19,7 @@ interface EventFirestore {
 
 export default function EventList() {
   const [events, setEvents] = useState<EventFirestore[]>([]);
+  const [toggleView, setToggleView] = useState(true);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -47,6 +49,13 @@ export default function EventList() {
   return (
     <div className="event-list-page">
       <h2 className="upcoming-events">Upcoming Events</h2>
+      <ToggleViewButton toggleView={toggleView} setToggleView={setToggleView} />
+      {toggleView ? <CardView /> : <ListView />}
+    </div>
+  );
+
+  function CardView() {
+    return (
       <div className="event-list-cards">
         {events.map((event) => (
           <Link
@@ -74,6 +83,37 @@ export default function EventList() {
           </Link>
         ))}
       </div>
-    </div>
-  );
+    );
+  }
+
+  function ListView() {
+    return (
+      <div className="list-view">
+        {events.map((event) => {
+          return (
+            <Link key={event.id} to={`/events/${event.id}`} className="row">
+              <div className="col-2">
+                <img
+                  src={
+                    event.imageUrl ||
+                    "https://placehold.co/600x400/orange/white?text=Event"
+                  }
+                  alt=""
+                  className="event-list-img"
+                />
+              </div>
+              <div className="col-10">
+                <small className="event-date">
+                  {new Date(event.date).toLocaleString()}
+                </small>
+                <h3 className="event-title">{event.title}</h3>
+                <p>by: {event.createdByName}</p>
+                <p>Attendees: {event.attendees.length}</p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    );
+  }
 }
