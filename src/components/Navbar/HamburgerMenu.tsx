@@ -28,12 +28,12 @@ export default function HamburgerMenu({ isStaff }) {
           <ul className="hamburger-links">
             <li>
               {isStaff && (
-                <Link to="create-event">
+                <Link to="create-event" onClick={() => setOpen(false)}>
                   <i className="fa-solid fa-calendar-plus"></i> Create event
                 </Link>
               )}
             </li>
-            <hr className="rounded" />
+            <hr className="dashed" />
             <li>
               <Link>
                 {" "}

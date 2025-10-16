@@ -75,6 +75,8 @@
   padding: 1rem;
 }
 
-hr.rounded {
-  border-top: 3px rounded black;
+hr.dashed {
+  border: none;
+  border-top: 1px dashed white;
+  margin: 5px 0 5px;
 }
