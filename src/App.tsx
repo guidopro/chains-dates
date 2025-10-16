@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./components/Login";
 import { CreateEventForm } from "./components/CreateEventForm/CreateEventForm";
 import { Navbar } from "./components/Navbar/Navbar";
 import EventList from "./components/EventList/EventList";
@@ -21,7 +20,6 @@ function App() {
         <Route path="/events" element={<EventList />} />
         <Route path="/events/:id" element={<EventPage />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/account" element={<Login />} />
       </Routes>
     </>
   );

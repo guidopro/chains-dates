@@ -3,7 +3,7 @@ import { auth, provider, logout, createUserProfile } from "../firebase";
 import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 
-async function handleGoogleSignIn() {
+export async function handleGoogleSignIn() {
   try {
     const result = await signInWithPopup(auth, provider);
     // The signed-in user info.

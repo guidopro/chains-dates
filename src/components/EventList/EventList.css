@@ -106,3 +106,9 @@
   flex-direction: row-reverse;
   align-self: flex-end;
 }
+
+.welcome {
+  position: relative;
+  display: flex;
+  margin: 1rem;
+}

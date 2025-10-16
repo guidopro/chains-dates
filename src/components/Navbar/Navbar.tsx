@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
+import Hamburger from "hamburger-react";
 import { useAuth } from "../../hooks/useAuth";
+
+import { handleGoogleSignIn } from "../Login";
 import "./Navbar.css";
 
 import logo from "../../assets/disc-golf-basket-svgrepo-com.svg";
+import HamburgerMenu from "./HamburgerMenu";
 
 export function Navbar() {
-  const { isStaff } = useAuth();
+  const { isStaff, user } = useAuth();
+
   return (
     <>
       <nav className="navbar" role="navigation">
@@ -26,14 +31,13 @@ export function Navbar() {
           </ul>
         </div>
         <div className="navbar-right">
-          {isStaff && (
-            <Link to="create-event" className="create-event-icon">
-              <i className="fa-solid fa-person-circle-plus"></i>
-            </Link>
+          {!user ? (
+            <button onClick={handleGoogleSignIn}>
+              <i className="fa-solid fa-circle-user"></i> Log in
+            </button>
+          ) : (
+            <HamburgerMenu isStaff={isStaff} />
           )}
-          <Link to="account" className="user-icon">
-            <i className="fa-solid fa-circle-user"></i>
-          </Link>
         </div>
       </nav>
     </>

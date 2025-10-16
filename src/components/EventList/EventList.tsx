@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ToggleViewButton from "./ToggleViewButton";
 
 import "./EventList.css";
+import WelcomeUser from "../WelcomeUser";
 
 interface EventFirestore {
   id: string;
@@ -48,6 +49,9 @@ export default function EventList() {
 
   return (
     <div className="event-list-page">
+      <div className="welcome">
+        <WelcomeUser />
+      </div>
       <h2 className="upcoming-events">Upcoming Events</h2>
       <ToggleViewButton toggleView={toggleView} setToggleView={setToggleView} />
       {toggleView ? <CardView /> : <ListView />}

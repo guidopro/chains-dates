@@ -47,14 +47,34 @@
   align-items: center;
 }
 
-.navbar-right .user-icon,
+/* .navbar-right .user-icon,
 .navbar-right .create-event-icon {
   color: #fff;
   text-decoration: none;
   margin-left: 1rem;
   position: relative;
-}
+} */
 
 .navbar-center .nav-links a:hover {
   color: #747bff;
+}
+
+.hamburger-container {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background: #6e6565;
+}
+
+.hamburger-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  padding: 1rem;
+}
+
+hr.rounded {
+  border-top: 3px rounded black;
 }
