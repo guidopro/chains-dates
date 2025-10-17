@@ -3,37 +3,36 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .event-list-cards {
   display: flex;
-  flex-direction: column;
-  /* align-self: stretch; */
-}
-
-@media only screen and (min-width: 600px) {
-  .event-list-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 
 .event-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  /* height: 420px; */
+  padding: 1rem;
   border: 1px solid;
-  border-radius: 5px;
+  border-radius: 8px;
+  align-items: flex-start;
+  background-color: rgba(250, 235, 215, 0.027);
   transition: all 0.2s ease-in-out;
-}
-
-.event-card p {
-  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .event-card:hover {
@@ -42,17 +41,20 @@
 }
 
 .img-container {
-  display: flex;
+  width: 100%;
+  aspect-ratio: 3 / 2;
   position: relative;
-  width: 300px;
-  height: 200px;
   background-color: black;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 
 .event-list-img {
-  width: 300px;
-  height: auto;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .top-right {
@@ -63,13 +65,27 @@
 }
 
 .event-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  /* line-height: 1.2; */
+  margin: 0.5rem 0;
   text-transform: capitalize;
-  text-align: center;
-  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
 }
 
 .event-date {
   font-weight: 200;
+  margin-bottom: 0.25rem;
+}
+
+.event-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
 }
 
 .list-view {
@@ -87,7 +103,7 @@
   /* padding: 0.5rem; */
   border: 1px solid;
   border-radius: 5px;
-  box-shadow: 5px 5px 1px 1px whitesmoke;
+  box-shadow: 5px 5px 1px 1px rgba(245, 245, 245, 0.842);
   transition: all 0.2s ease-in-out;
 }
 
