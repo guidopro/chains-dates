@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
 import ToggleViewButton from "./ToggleViewButton";
@@ -26,7 +26,17 @@ export default function EventList() {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, "events"));
+      const now = new Date(); // current time
+
+      // Create a Firestore query:
+      const eventsRef = collection(db, "events");
+      const q = query(
+        eventsRef,
+        where("start", ">=", now), // only upcoming events
+        orderBy("start", "asc") // earliest first
+      );
+
+      const querySnapshot = await getDocs(q);
 
       const eventsData: EventFirestore[] = querySnapshot.docs.map((docSnap) => {
         const data = docSnap.data();
