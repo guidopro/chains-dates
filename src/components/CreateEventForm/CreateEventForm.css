@@ -64,3 +64,9 @@ button[type="submit"] {
   justify-self: center;
   box-sizing: border-box;
 }
+
+.date-time-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

@@ -11,11 +11,13 @@ interface EventFirestore {
   id: string;
   title: string;
   description: string;
-  date: string;
+  start: string;
+  end: string;
+  createdAt: string;
   createdByName: string;
   attendees: string[];
-  imageUrl?: string;
-  isFree?: boolean;
+  imageUrl: string;
+  isFree: boolean;
 }
 
 export default function EventList() {
@@ -33,9 +35,11 @@ export default function EventList() {
           id: docSnap.id,
           title: data.title,
           description: data.description,
+          createdAt: data.createdAt,
           createdByName: data.createdByName,
           attendees: data.attendees || [],
-          date: data.date.toDate().toISOString(),
+          start: data.start.toDate().toISOString(),
+          end: data.end.toDate().toISOString(),
           imageUrl: data.imageUrl,
           isFree: data.isFree,
         };
@@ -79,7 +83,7 @@ export default function EventList() {
               <div className="top-right">{event.isFree ? "Free" : ""}</div>
             </div>
             <small className="event-date">
-              {new Date(event.date).toLocaleString()}
+              {new Date(event.start).toLocaleString()}
             </small>
             <h3 className="event-title">{event.title}</h3>
             <p>by: {event.createdByName}</p>
@@ -108,7 +112,7 @@ export default function EventList() {
               </div>
               <div className="col-10">
                 <small className="event-date">
-                  {new Date(event.date).toLocaleString()}
+                  {new Date(event.start).toLocaleString()}
                 </small>
                 <h3 className="event-title">{event.title}</h3>
                 <p>by: {event.createdByName}</p>

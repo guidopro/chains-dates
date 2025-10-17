@@ -9,6 +9,8 @@ export function CreateEventForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [isFree, setIsFree] = useState(true);
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,9 @@ export function CreateEventForm() {
 
     try {
       // Convert HTML date input to Firestore Timestamp
-      const eventDate = Timestamp.fromDate(new Date(date));
+      // const eventDate = Timestamp.fromDate(new Date(date));
+      const start = Timestamp.fromDate(new Date(`${date}T${startTime}:00`));
+      const end = Timestamp.fromDate(new Date(`${date}T${endTime}:00`));
 
       // turn user into firestore ref for db
       const firestoreRef = doc(db, "user", user.uid);
@@ -30,7 +34,8 @@ export function CreateEventForm() {
       await addDoc(collection(db, "events"), {
         title,
         description,
-        date: eventDate,
+        start,
+        end,
         isFree,
         imageUrl,
         attendees: [],
@@ -43,6 +48,8 @@ export function CreateEventForm() {
       setTitle("");
       setDescription("");
       setDate("");
+      setStartTime("");
+      setEndTime("");
       setIsFree(true);
       setImageUrl("");
     } catch (error) {
@@ -72,13 +79,35 @@ export function CreateEventForm() {
       />
 
       <div className="datetime-free-event">
-        <input
-          type="datetime-local"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-
+        <div className="date-time-inputs">
+          <label>
+            Date:
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Start time:
+            <input
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Finish time:
+            <input
+              type="time"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              required
+            />
+          </label>
+        </div>
         <label className="free-event">
           <span>This event is free</span>
           <input

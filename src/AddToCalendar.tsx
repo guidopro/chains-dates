@@ -11,25 +11,16 @@ export function AddToCalendar({ event }: AddToCalendarProps) {
       const token = await requestCalendarAccess();
       if (!token) throw new Error("No Google token received");
 
-      const startTime = new Date(event.date).toISOString();
-      // console.log(startTime, "start time");
-
-      const endTime = new Date(
-        new Date(event.date).getTime() + 2 * 60 * 60 * 1000
-      ).toISOString();
-
-      // console.log(endTime, "end time");
-
       const eventToAdd = {
         summary: event.title,
         location: event.location || "",
         description: event.description,
         start: {
-          dateTime: startTime,
+          dateTime: event.start,
           timeZone: "Europe/London",
         },
         end: {
-          dateTime: endTime,
+          dateTime: event.end,
           timeZone: "Europe/London",
         },
       };

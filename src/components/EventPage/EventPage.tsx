@@ -8,6 +8,7 @@ import { AddToCalendar } from "../../AddToCalendar";
 
 // styling
 import "./EventPage.css";
+import { formatEventTime } from "../../utils/formatEventTime";
 
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
@@ -39,7 +40,7 @@ export default function EventPage() {
         className="event-img"
       />
       <h2 className="event-title">{event.title}</h2>
-      <p className="event-date">{new Date(event.date).toLocaleString()}</p>
+      <p className="event-date">{formatEventTime(event.start, event.end)}</p>
       <p>By: {event.createdByName}</p>
       <p>
         <strong>Price:</strong> {event.isFree ? "Free" : "Paid"}

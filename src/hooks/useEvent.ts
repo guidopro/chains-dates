@@ -7,9 +7,10 @@ export interface EventData {
   description: string;
   isFree: boolean;
   attendees?: string[];
-  date: string;
-  createdAt: string;
-  createdBy: string;
+  start: string;
+  end: string;
+  createdAt?: string;
+  createdBy?: string;
   createdByName: string;
   imageUrl?: string;
 }
@@ -28,7 +29,10 @@ export function useEvent(eventId: string) {
         if (eventSnap.exists()) {
           const data = eventSnap.data();
 
-          const date = data.date.toDate().toISOString();
+          // string conversion of date & times
+          const start = data.start.toDate().toISOString();
+          const end = data.end.toDate().toISOString();
+
           const createdAt = data.createdAt.toDate().toISOString();
           const createdBy = data.createdBy.id;
 
@@ -36,12 +40,13 @@ export function useEvent(eventId: string) {
             title: data.title,
             description: data.description,
             isFree: data.isFree,
-            attendees: data?.attendees,
-            date: date,
+            attendees: data.attendees,
+            start: start,
+            end: end,
             createdAt: createdAt,
             createdBy: createdBy,
             createdByName: data.createdByName,
-            imageUrl: data?.imageUrl,
+            imageUrl: data.imageUrl || "",
           });
         } else {
           setError("Event not found");
