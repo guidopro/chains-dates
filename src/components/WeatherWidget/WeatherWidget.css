@@ -1,0 +1,57 @@
+.weather-widget {
+  background-color: #3b83f61e;
+  color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 100%;
+  box-shadow: 0 4px 12px rgba(255, 253, 253, 0.15);
+}
+
+.weather-widget h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.forecast-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(29, 79, 216, 0.062); /* blue-600/40 */
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.forecast-date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.date-text {
+  font-weight: 600;
+}
+
+.date-text::before {
+  content: "📅";
+  margin-right: 0.25rem;
+}
+
+/* Right column values */
+.forecast-values {
+  /* text-align: right; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.forecast-values p {
+  margin: 0;
+}

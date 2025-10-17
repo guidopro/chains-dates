@@ -9,6 +9,7 @@ import { AddToCalendar } from "../../AddToCalendar";
 // styling
 import "./EventPage.css";
 import { formatEventTime } from "../../utils/formatEventTime";
+import WeatherWidget from "../WeatherWidget/WeatherWidget";
 
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
@@ -31,26 +32,38 @@ export default function EventPage() {
 
   return (
     <div className="event-page">
-      <img
-        src={
-          event.imageUrl ||
-          "https://placehold.co/600x400/orange/white?text=Event"
-        }
-        alt=""
-        className="event-img"
-      />
-      <h2 className="event-title">{event.title}</h2>
-      <p className="event-date">{formatEventTime(event.start, event.end)}</p>
-      <p>By: {event.createdByName}</p>
-      <p>
-        <strong>Price:</strong> {event.isFree ? "Free" : "Paid"}
-      </p>
-      <p className="event-description">{event.description}</p>
-      <button onClick={() => handleAttend(id!)} className="attend-button">
-        Attend
-      </button>
+      <div className="event-hero">
+        <img
+          src={
+            event.imageUrl ||
+            "https://placehold.co/600x400/orange/white?text=Event"
+          }
+          alt={event.title}
+          className="event-img"
+        />
+      </div>
+      <div className="event-content">
+        <div className="event-main">
+          <h2 className="event-title">{event.title}</h2>
+          <p className="event-date">
+            {formatEventTime(event.start, event.end)}
+          </p>
+          <p className="event-creator">By: {event.createdByName}</p>
+          <p>
+            <strong>Price:</strong> {event.isFree ? "Free" : "Paid"}
+          </p>
+          <p className="event-description">{event.description}</p>
+        </div>
+        <aside className="event-side">
+          <WeatherWidget startDate={event.start} endDate={event.end} />
+          <button onClick={() => handleAttend(id!)} className="attend-button">
+            Attend
+          </button>
+          <AddToCalendar event={event} />
+        </aside>
+      </div>
+
       <ToastContainer />
-      <AddToCalendar event={event} />
     </div>
   );
 }
