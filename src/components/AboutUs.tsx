@@ -1,12 +1,8 @@
 export default function AboutUs() {
-  const paragraphStyles = {
-    textAlign: "center",
-  };
-
   return (
     <>
       <h2 style={{ textAlign: "center" }}>About Us</h2>
-      <p style={paragraphStyles}>
+      <p style={{ textAlign: "center" }}>
         Welcome to Chains & Dates, a disc golf community built for players who
         love the game and the connections it creates. Based around the beautiful
         Longford Park Disc Golf Course in Manchester, our platform brings local
@@ -15,7 +11,7 @@ export default function AboutUs() {
         gives you an easy way to discover upcoming events, sign up to play, and
         stay connected with others who share your passion for disc golf.
       </p>
-      <p style={paragraphStyles}>
+      <p style={{ textAlign: "center" }}>
         At its heart, Chains & Dates is more than just an events platform — it’s
         a growing community of people who enjoy the outdoors, friendly
         competition, and a good laugh on the fairway. We’re here to make it

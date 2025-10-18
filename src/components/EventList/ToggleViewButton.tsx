@@ -1,6 +1,14 @@
 import "./EventList.css";
 
-export default function ToggleViewButton({ toggleView, setToggleView }) {
+interface ToggleViewButtonProps {
+  toggleView: boolean;
+  setToggleView: (value: boolean) => void;
+}
+
+export default function ToggleViewButton({
+  toggleView,
+  setToggleView,
+}: ToggleViewButtonProps) {
   return (
     <>
       <div className="toggle-button-container">

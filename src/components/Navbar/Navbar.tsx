@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Hamburger from "hamburger-react";
 import { useAuth } from "../../hooks/useAuth";
 
 import { handleGoogleSignIn } from "../Login";

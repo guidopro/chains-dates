@@ -28,6 +28,12 @@ export function CreateEventForm() {
       const start = Timestamp.fromDate(new Date(`${date}T${startTime}:00`));
       const end = Timestamp.fromDate(new Date(`${date}T${endTime}:00`));
 
+
+      if (!user){
+        // handle null case
+        return
+      }
+
       // turn user into firestore ref for db
       const firestoreRef = doc(db, "user", user.uid);
 

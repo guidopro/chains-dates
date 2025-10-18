@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useClickAway } from "@uidotdev/usehooks";
 
-export default function HamburgerMenu({ isStaff }) {
+interface HamburgerMenuProps {
+  isStaff: boolean;
+}
+
+export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
   const [isOpen, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -18,7 +22,7 @@ export default function HamburgerMenu({ isStaff }) {
     }
   };
 
-  const ref = useClickAway(() => setOpen(false));
+  const ref = useClickAway<HTMLDivElement>(() => setOpen(false));
 
   return (
     <div ref={ref}>
@@ -35,13 +39,13 @@ export default function HamburgerMenu({ isStaff }) {
             </li>
             <hr className="dashed" />
             <li>
-              <Link>
+              <Link to="">
                 {" "}
                 <i className="fa-solid fa-gear"></i> Settings
               </Link>
             </li>
             <li>
-              <Link onClick={handleLogout}>
+              <Link to="" onClick={handleLogout}>
                 <i className="fa-solid fa-right-from-bracket"> </i> Log out
               </Link>
             </li>

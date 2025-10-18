@@ -1,5 +1,6 @@
 import { requestCalendarAccess } from "./functions/requestCalendarAccess";
 import type { EventData } from "./hooks/useEvent";
+import { ToastContainer, toast } from "react-toastify";
 
 interface AddToCalendarProps {
   event: EventData;
@@ -13,7 +14,7 @@ export function AddToCalendar({ event }: AddToCalendarProps) {
 
       const eventToAdd = {
         summary: event.title,
-        location: event.location || "",
+        location: "CPX5+7V Manchester",
         description: event.description,
         start: {
           dateTime: event.start,
@@ -42,12 +43,17 @@ export function AddToCalendar({ event }: AddToCalendarProps) {
         throw new Error(err);
       }
 
-      alert("✅ Event added to your Google Calendar!");
+      toast("✅ Event added to your Google Calendar!");
     } catch (err) {
       console.error("Failed to add to calendar:", err);
-      alert("Something went wrong adding this event.");
+      toast("Something went wrong adding this event.");
     }
   }
 
-  return <button onClick={handleAddToCal}>Add to Google Calendar</button>;
+  return (
+    <>
+      <button onClick={handleAddToCal}>Add to Google Calendar</button>
+      <ToastContainer />
+    </>
+  );
 }

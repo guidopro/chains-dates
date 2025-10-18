@@ -10,7 +10,7 @@ export async function requestCalendarAccess() {
 
   const result = await signInWithPopup(auth, provider);
   const credential = GoogleAuthProvider.credentialFromResult(result);
-  const accessToken = credential.accessToken;
+  const accessToken = credential?.accessToken;
 
   console.log("Calendar access token:", accessToken);
   return accessToken;
