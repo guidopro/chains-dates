@@ -1,0 +1,110 @@
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: 432323;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.welcome-section {
+  text-align: center;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff6f61;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #ff4c3b;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.google-button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4285f4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.google-button:hover {
+  background-color: #357ae8;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #555;
+  margin: 15px 0;
+}
+
+.email-login-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #e0d9d9;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.email-button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #5a9690;
+  color: #fff;
+  cursor: pointer;
+}
+
+.email-button:hover {
+  background-color: #2b4945;
+}
+
+.error-text {
+  color: #ff4c3b;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .email-button {
+    width: 100%;
+  }
+}

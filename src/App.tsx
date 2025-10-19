@@ -5,7 +5,7 @@ import EventList from "./components/EventList/EventList";
 import { useAuth } from "./hooks/useAuth";
 import EventPage from "./components/EventPage/EventPage";
 import AboutUs from "./components/AboutUs";
-import { Login } from "./components/Login";
+import { Login } from "./components/Login/Login";
 import { Settings } from "./components/Settings";
 
 function App() {
