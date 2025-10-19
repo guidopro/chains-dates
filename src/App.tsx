@@ -5,6 +5,8 @@ import EventList from "./components/EventList/EventList";
 import { useAuth } from "./hooks/useAuth";
 import EventPage from "./components/EventPage/EventPage";
 import AboutUs from "./components/AboutUs";
+import { Login } from "./components/Login";
+import { Settings } from "./components/Settings";
 
 function App() {
   const { isStaff } = useAuth();
@@ -20,6 +22,8 @@ function App() {
         <Route path="/events" element={<EventList />} />
         <Route path="/events/:id" element={<EventPage />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </>
   );

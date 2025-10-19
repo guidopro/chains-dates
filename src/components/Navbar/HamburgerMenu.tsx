@@ -39,7 +39,7 @@ export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
             </li>
             <hr className="dashed" />
             <li>
-              <Link to="">
+              <Link to="settings">
                 {" "}
                 <i className="fa-solid fa-gear"></i> Settings
               </Link>

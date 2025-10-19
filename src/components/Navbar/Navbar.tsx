@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
-import { handleGoogleSignIn } from "../Login";
 import "./Navbar.css";
 
 import logo from "../../assets/disc-golf-basket-svgrepo-com.svg";
@@ -25,15 +24,17 @@ export function Navbar() {
               <Link to="events">Events</Link>
             </li>
             <li>
-              <Link to="/about-us">About Us</Link>
+              <Link to="about-us">About Us</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-right">
           {!user ? (
-            <button onClick={handleGoogleSignIn}>
-              <i className="fa-solid fa-circle-user"></i> Log in
-            </button>
+            <Link to="login">
+              <button>
+                <i className="fa-solid fa-circle-user"></i> Log in
+              </button>
+            </Link>
           ) : (
             <HamburgerMenu isStaff={isStaff} />
           )}
