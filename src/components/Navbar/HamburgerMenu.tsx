@@ -1,6 +1,6 @@
 import Hamburger from "hamburger-react";
 import { logout } from "../../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useClickAway } from "@uidotdev/usehooks";
 
@@ -10,6 +10,13 @@ interface HamburgerMenuProps {
 
 export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
   const [isOpen, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -30,6 +37,21 @@ export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
       {isOpen && (
         <div className="hamburger-container">
           <ul className="hamburger-links">
+            {isMobile && (
+              <>
+                <li>
+                  <Link to="events" onClick={() => setOpen(false)}>
+                    <i className="fa-solid fa-calendar"></i> Events
+                  </Link>
+                </li>
+                <li>
+                  <Link to="about-us" onClick={() => setOpen(false)}>
+                    <i className="fa-solid fa-address-card"></i> About Us
+                  </Link>
+                </li>
+              </>
+            )}
+            {isMobile && <hr className="dashed" />}
             <li>
               {isStaff && (
                 <Link to="create-event" onClick={() => setOpen(false)}>
@@ -37,7 +59,7 @@ export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
                 </Link>
               )}
             </li>
-            <hr className="dashed" />
+
             <li>
               <Link to="settings">
                 {" "}

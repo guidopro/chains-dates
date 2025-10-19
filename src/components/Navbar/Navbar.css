@@ -5,8 +5,10 @@
   background-color: #333;
   color: #fff;
   padding: 1rem;
+  position: relative;
 }
 
+/* left section */
 .navbar-left .logo-container {
   display: flex;
   gap: 0.5rem;
@@ -26,6 +28,7 @@
   text-decoration: none;
 }
 
+/* center links (events/ about us) */
 .navbar-center .nav-links {
   list-style-type: none;
   display: flex;
@@ -42,41 +45,59 @@
   text-decoration: none;
 }
 
+/* right side (login & hamburger menu) */
 .navbar-right {
   display: flex;
   align-items: center;
 }
 
-/* .navbar-right .user-icon,
-.navbar-right .create-event-icon {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 1rem;
-  position: relative;
-} */
-
 .navbar-center .nav-links a:hover {
   color: #747bff;
 }
 
+/* hamburger menu styles */
 .hamburger-container {
   position: absolute;
   top: 80px;
   right: 0;
-  background: #6e6565;
+  background: #444;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 
 .hamburger-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
   padding: 1rem;
 }
+
+.hamburger-links li {
+  margin: 0.25rem 0;
+}
+
+/* .hamburger-links a:hover {
+  color: #747bff;
+} */
 
 hr.dashed {
   border: none;
   border-top: 1px dashed white;
   margin: 5px 0 5px;
+}
+
+/* RESPONSIVE BEHAVIOR */
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+  }
+
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-left .logo-text {
+    font-size: 1.25rem;
+  }
 }
