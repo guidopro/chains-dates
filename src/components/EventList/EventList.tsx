@@ -23,6 +23,7 @@ interface EventFirestore {
 export default function EventList() {
   const [events, setEvents] = useState<EventFirestore[]>([]);
   const [toggleView, setToggleView] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -59,7 +60,13 @@ export default function EventList() {
     };
 
     fetchEvents();
-  }, []);
+
+    if (isMobile) setToggleView(true); // true = card view
+    // listener for screen resize
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMobile]);
 
   return (
     <div className="event-list-page">
@@ -67,7 +74,12 @@ export default function EventList() {
         <WelcomeUser />
       </div>
       <h2 className="upcoming-events">Upcoming Events</h2>
-      <ToggleViewButton toggleView={toggleView} setToggleView={setToggleView} />
+      {isMobile ? null : (
+        <ToggleViewButton
+          toggleView={toggleView}
+          setToggleView={setToggleView}
+        />
+      )}
       {toggleView ? <CardView /> : <ListView />}
     </div>
   );
