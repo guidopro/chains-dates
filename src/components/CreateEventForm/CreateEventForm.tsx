@@ -68,7 +68,7 @@ export function CreateEventForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="text-xl font-semibold">Create New Event</h2>
+      <h2 className="heading">Create New Event</h2>
 
       <input
         type="text"

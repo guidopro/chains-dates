@@ -1,72 +1,108 @@
 form {
-  border-radius: 5px;
-  background-color: #211038;
+  border-radius: 10px;
+  background-color: #38353b;
   padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  color: #fff;
 }
+
+.heading {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #f0f0f0;
+}
+
+/* inputs and textarea */
 
 input[type="text"],
-select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
+input[type="url"],
+input[type="date"],
+input[type="time"],
 textarea {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #555;
+  border-radius: 6px;
   box-sizing: border-box;
+  background-color: #2a1f3e;
+  font-size: 1rem;
 }
 
-input[type="datetime-local"],
-select {
-  width: auto;
-  padding: 2px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-.free-event {
-  width: auto;
-  padding: 2px;
-  margin: 8px 0;
-  display: inline-block;
-  box-sizing: border-box;
-}
-
+/* Flex layout for datetime + checkbox */
 .datetime-free-event {
   display: flex;
   justify-content: space-between;
-}
-
-input[type="file"] {
-  width: 100%;
-  padding: 2px;
-  margin: 8px 0;
-  display: inline-block;
-  box-sizing: border-box;
-}
-
-button[type="submit"] {
-  padding: 12px;
-  margin: 8px 0;
-  display: flex;
-  justify-self: center;
-  box-sizing: border-box;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
 }
 
 .date-time-inputs {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1 1 300px;
+}
+
+.date-time-inputs label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100px;
+  font-size: 0.9rem;
+}
+
+.free-event {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+/* Button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  /* background-color: #ff6e61; */
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff9a16;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .datetime-free-event {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .date-time-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .free-event {
+    justify-content: flex-start;
+  }
 }
