@@ -11,11 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  height: 100%;
 }
 
 a {
-  /* font-weight: 500; */
-  /* color: #646cff; */
   text-decoration: inherit;
 }
 a:hover {
@@ -59,4 +59,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }

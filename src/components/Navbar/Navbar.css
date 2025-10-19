@@ -87,6 +87,10 @@ hr.dashed {
   margin: 5px 0 5px;
 }
 
+.hamburger-react:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color !important;
+}
+
 /* RESPONSIVE BEHAVIOR */
 @media (max-width: 768px) {
   .navbar-center {

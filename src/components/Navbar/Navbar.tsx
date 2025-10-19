@@ -31,7 +31,7 @@ export function Navbar() {
         <div className="navbar-right">
           {!user ? (
             <Link to="login">
-              <button>
+              <button id="login-button">
                 <i className="fa-solid fa-circle-user"></i> Log in
               </button>
             </Link>

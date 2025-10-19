@@ -44,13 +44,17 @@ export function Login() {
       {user ? (
         <div className="welcome-section">
           <p className="welcome-text">Welcome {user.displayName || name}</p>
-          <button className="logout-button" onClick={logout}>
+          <button className="logout-button" id="logout-button" onClick={logout}>
             Log out
           </button>
         </div>
       ) : (
         <div className="login-section">
-          <button className="google-button" onClick={signInWithGoogle}>
+          <button
+            className="google-button"
+            id="google-button"
+            onClick={signInWithGoogle}
+          >
             Sign in with Google
           </button>
 
@@ -76,10 +80,18 @@ export function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="button-group">
-            <button className="email-button" onClick={handleEmailSignIn}>
+            <button
+              className="email-button"
+              id="sign-in-button"
+              onClick={handleEmailSignIn}
+            >
               Sign In
             </button>
-            <button className="email-button" onClick={handleEmailSignUp}>
+            <button
+              className="email-button"
+              id="sign-up-button"
+              onClick={handleEmailSignUp}
+            >
               Sign Up
             </button>
           </div>

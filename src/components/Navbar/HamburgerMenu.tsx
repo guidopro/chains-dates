@@ -32,7 +32,7 @@ export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
   const ref = useClickAway<HTMLDivElement>(() => setOpen(false));
 
   return (
-    <div ref={ref}>
+    <div ref={ref} id="dropdown-menu">
       <Hamburger toggled={isOpen} toggle={setOpen} size={20} />
       {isOpen && (
         <div className="hamburger-container">

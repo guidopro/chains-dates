@@ -7,24 +7,28 @@ import EventPage from "./components/EventPage/EventPage";
 import AboutUs from "./components/AboutUs";
 import { Login } from "./components/Login/Login";
 import { Settings } from "./components/Settings";
+import Footer from "./components/Footer";
 
 function App() {
   const { isStaff } = useAuth();
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<EventList />} />
-        {isStaff && (
-          <Route path="/create-event" element={<CreateEventForm />} />
-        )}
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<EventList />} />
+          {isStaff && (
+            <Route path="/create-event" element={<CreateEventForm />} />
+          )}
 
-        <Route path="/events" element={<EventList />} />
-        <Route path="/events/:id" element={<EventPage />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+          <Route path="/events" element={<EventList />} />
+          <Route path="/events/:id" element={<EventPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </div>
+      <Footer />
     </>
   );
 }
