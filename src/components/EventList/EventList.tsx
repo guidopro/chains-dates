@@ -105,10 +105,7 @@ export default function EventList() {
               />
               <div className="top-right">{event.isFree ? "Free" : ""}</div>
             </div>
-            <small className="event-date">
-              {/* {new Date(event.start).toLocaleString()} */}
-              {formatEventTime(event.start)}
-            </small>
+            <small className="event-date">{formatEventTime(event.start)}</small>
             <h3 className="event-title">{event.title}</h3>
             <p>by: {event.createdByName}</p>
             <p>Attendees: {event.attendees.length}</p>
@@ -136,7 +133,7 @@ export default function EventList() {
               </div>
               <div className="col-10">
                 <small className="event-date">
-                  {new Date(event.start).toLocaleString()}
+                  {formatEventTime(event.start)}
                 </small>
                 <h3 className="event-title">{event.title}</h3>
                 <p>by: {event.createdByName}</p>
