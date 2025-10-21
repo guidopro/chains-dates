@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEvent } from "../../hooks/useEvent";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { ToastContainer, toast } from "react-toastify";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { toast } from "react-toastify";
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/useAuth";
 import { AddToCalendar } from "../../AddToCalendar";
@@ -10,24 +10,50 @@ import { AddToCalendar } from "../../AddToCalendar";
 import "./EventPage.css";
 import { formatEventTime } from "../../utils/formatEventTime";
 import WeatherWidget from "../WeatherWidget/WeatherWidget";
+import { useEffect, useState } from "react";
 
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
   const { event, loading, error } = useEvent(id!);
   const { user } = useAuth(); // current logged-in user
+  const [attend, setAttend] = useState(false);
+
+  useEffect(() => {
+    if (user && event?.attendees) {
+      setAttend(event.attendees.includes(user.uid));
+    } else {
+      setAttend(false);
+    }
+  }, [user, event]);
 
   if (loading) return <p>Loading event...</p>;
   if (error) return <p>{error}</p>;
   if (!event) return <p>No event found.</p>;
 
-  const handleAttend = async (eventId: string) => {
+  const handleToggleAttend = async () => {
     if (!user) return toast("Please log in first");
+    const eventRef = doc(db, "events", id!);
 
-    await updateDoc(doc(db, "events", eventId), {
-      attendees: arrayUnion(user.uid),
-    });
-
-    toast("You’re signed up for the event!");
+    try {
+      if (attend) {
+        // remove user
+        await updateDoc(eventRef, {
+          attendees: arrayRemove(user.uid),
+        });
+        setAttend(false);
+        toast("You’re no longer attending this event.");
+      } else {
+        // add user
+        await updateDoc(eventRef, {
+          attendees: arrayUnion(user.uid),
+        });
+        setAttend(true);
+        toast("You’re signed up for the event!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast("Something went wrong updating attendance.");
+    }
   };
 
   return (
@@ -56,14 +82,15 @@ export default function EventPage() {
         </div>
         <aside className="event-side">
           <WeatherWidget startDate={event.start} endDate={event.end} />
-          <button onClick={() => handleAttend(id!)} className="attend-button">
-            Attend
+          <button
+            onClick={() => handleToggleAttend()}
+            className={attend ? "attending-button" : "attend-button"}
+          >
+            {attend ? "Attending" : "Attend"}
           </button>
           <AddToCalendar event={event} />
         </aside>
       </div>
-
-      <ToastContainer />
     </div>
   );
 }

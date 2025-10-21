@@ -64,6 +64,21 @@
   transform: scale(1.03);
 }
 
+.attending-button {
+  padding: 0.75rem 1rem;
+  background: green;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+}
+
+.attending-button:hover {
+  transform: scale(1.03);
+}
+
 @media (max-width: 768px) {
   .event-content {
     grid-template-columns: 1fr;

@@ -8,6 +8,7 @@ import AboutUs from "./components/AboutUs";
 import { Login } from "./components/Login/Login";
 import { Settings } from "./components/Settings";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { isStaff } = useAuth();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
+        <ToastContainer />
       </div>
       <Footer />
     </>
