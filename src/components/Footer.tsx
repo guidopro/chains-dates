@@ -4,9 +4,10 @@ export default function Footer() {
       style={{
         textAlign: "center",
         padding: "1rem",
-        backgroundColor: "#f8f8f8",
-        color: "#555",
+        backgroundColor: "#333",
+        color: "#fff",
         fontSize: "0.9rem",
+        marginTop: "100px",
       }}
     >
       &copy; 2025 Chains & Dates. All rights reserved.
