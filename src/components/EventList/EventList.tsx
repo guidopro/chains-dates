@@ -6,6 +6,7 @@ import ToggleViewButton from "./ToggleViewButton";
 
 import "./EventList.css";
 import WelcomeUser from "../WelcomeUser";
+import { formatEventTime } from "../../utils/formatEventTime";
 
 interface EventFirestore {
   id: string;
@@ -105,7 +106,8 @@ export default function EventList() {
               <div className="top-right">{event.isFree ? "Free" : ""}</div>
             </div>
             <small className="event-date">
-              {new Date(event.start).toLocaleString()}
+              {/* {new Date(event.start).toLocaleString()} */}
+              {formatEventTime(event.start)}
             </small>
             <h3 className="event-title">{event.title}</h3>
             <p>by: {event.createdByName}</p>
