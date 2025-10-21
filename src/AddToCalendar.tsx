@@ -1,6 +1,7 @@
 import { requestCalendarAccess } from "./functions/requestCalendarAccess";
 import type { EventData } from "./hooks/useEvent";
 import { ToastContainer, toast } from "react-toastify";
+import { downloadICSFile } from "./utils/downloadICSFile";
 
 interface AddToCalendarProps {
   event: EventData;
@@ -50,9 +51,26 @@ export function AddToCalendar({ event }: AddToCalendarProps) {
     }
   }
 
+  function handleDownloadICS() {
+    try {
+      downloadICSFile(event);
+      toast("📅 .ics file downloaded!");
+    } catch (err) {
+      console.error("Failed to create .ics file:", err);
+      toast("Could not generate calendar file.");
+    }
+  }
+
   return (
     <>
-      <button onClick={handleAddToCal}>Add to Google Calendar</button>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <button onClick={handleAddToCal} style={{ width: "100%" }}>
+          Add to Google Calendar
+        </button>
+        <button onClick={handleDownloadICS} style={{ width: "100%" }}>
+          Download .ics
+        </button>
+      </div>
       <ToastContainer />
     </>
   );

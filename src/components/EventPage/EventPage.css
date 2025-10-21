@@ -1,14 +1,12 @@
 .event-page {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 2rem auto;
   font-family: system-ui, sans-serif;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgb(119, 89, 89);
   overflow: hidden;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 }
 
 .event-hero img {
@@ -22,7 +20,7 @@
   grid-template-columns: 2fr 2fr;
   gap: 1.5rem;
   padding: 1.5rem;
-  /* align-items: start; */
+  align-items: start;
 }
 
 .event-main {
