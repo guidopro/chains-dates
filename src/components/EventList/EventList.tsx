@@ -66,7 +66,23 @@ export default function EventList() {
     // listener for screen resize
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    // ✅ Add keyboard shortcuts for toggling view
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isMobile) return; // ✅ Ignore shortcuts on mobile
+      if (e.key.toLowerCase() === "l") {
+        setToggleView(false); // List view
+      } else if (e.key.toLowerCase() === "g") {
+        setToggleView(true); // Grid/card view
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isMobile]);
 
   return (

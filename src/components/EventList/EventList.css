@@ -151,6 +151,33 @@
   align-self: flex-end;
 }
 
+.tool-tip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* Add dots under the hoverable text */
+  cursor: pointer;
+}
+
+.tool-tip-text {
+  visibility: hidden; /* Hidden by default */
+
+  width: 70px;
+  bottom: 200%;
+  left: 50%;
+  margin-left: -35px; /* Use half of the width (130/2 = 65), to center the tooltip */
+  background-color: rgba(0, 0, 0, 0.593);
+  color: rgba(255, 255, 255, 0.641);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1; /* Ensure tooltip is displayed above content */
+}
+
+.tool-tip:hover .tool-tip-text {
+  visibility: visible;
+}
+
 .welcome {
   position: relative;
   display: flex;

@@ -16,9 +16,15 @@ export default function ToggleViewButton({
         <button onClick={() => setToggleView(!toggleView)}>
           {" "}
           {toggleView ? (
-            <i className="fa-solid fa-list"></i>
+            <div className="tool-tip">
+              <span className="tool-tip-text">L</span>
+              <i className="fa-solid fa-list"></i>
+            </div>
           ) : (
-            <i className="fa-solid fa-grip"></i>
+            <div className="tool-tip">
+              <span className="tool-tip-text">G</span>
+              <i className="fa-solid fa-grip"></i>
+            </div>
           )}
         </button>
       </div>
