@@ -21,6 +21,7 @@
   gap: 1.5rem;
   padding: 1.5rem;
   align-items: start;
+  /* background-color: white; */
 }
 
 .event-main {
@@ -77,6 +78,14 @@
 
 .attending-button:hover {
   transform: scale(1.03);
+}
+
+/* Disabled state */
+.disabled,
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {

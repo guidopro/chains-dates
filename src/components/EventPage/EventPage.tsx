@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEvent } from "../../hooks/useEvent";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, arrayUnion, arrayRemove, writeBatch, deleteField } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { db } from "../../firebase";
 import { useAuth } from "../../hooks/useAuth";
@@ -17,6 +17,7 @@ export default function EventPage() {
   const { event, loading, error } = useEvent(id!);
   const { user } = useAuth(); // current logged-in user
   const [attend, setAttend] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   useEffect(() => {
     if (user && event?.attendees) {
@@ -32,27 +33,46 @@ export default function EventPage() {
 
   const handleToggleAttend = async () => {
     if (!user) return toast("Please log in first");
+    setButtonLoading(true);
+
     const eventRef = doc(db, "events", id!);
+    const userRef = doc(db, "users", user.uid);
 
     try {
+      const batch = writeBatch(db);
+
       if (attend) {
-        // remove user
-        await updateDoc(eventRef, {
-          attendees: arrayRemove(user.uid),
-        });
-        setAttend(false);
-        toast("You’re no longer attending this event.");
+        // remove user from both docs
+        batch.update(eventRef, { attendees: arrayRemove(user.uid) });
+        
+          // remove event entry from user map
+      batch.update(userRef, {
+        [`joinedEvents.${id}`]: deleteField(),
+      });
+
       } else {
-        // add user
-        await updateDoc(eventRef, {
-          attendees: arrayUnion(user.uid),
-        });
-        setAttend(true);
-        toast("You’re signed up for the event!");
+        // add user to both docs
+        batch.update(eventRef, { attendees: arrayUnion(user.uid) });
+           // add event entry to user map
+      batch.update(userRef, {
+        [`joinedEvents.${id}`]: {
+          date: event.start, // store event date string
+        },
+      });
       }
+
+      await batch.commit();
+      setAttend(!attend);
+      toast(
+        attend
+          ? "You're no longer attending this event."
+          : "You're signed up for this event!"
+      );
     } catch (err) {
       console.error(err);
       toast("Something went wrong updating attendance.");
+    } finally {
+      setButtonLoading(false);
     }
   };
 
@@ -84,9 +104,12 @@ export default function EventPage() {
           <WeatherWidget startDate={event.start} endDate={event.end} />
           <button
             onClick={() => handleToggleAttend()}
-            className={attend ? "attending-button" : "attend-button"}
+            disabled={buttonLoading}
+            className={`${attend ? "attending-button" : "attend-button"} ${
+              buttonLoading ? "disabled" : ""
+            }`}
           >
-            {attend ? "Attending" : "Attend"}
+            {buttonLoading ? "Saving..." : attend ? "Attending" : "Attend"}
           </button>
           <AddToCalendar event={event} />
         </aside>
