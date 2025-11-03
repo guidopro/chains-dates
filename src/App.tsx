@@ -9,6 +9,7 @@ import { Login } from "./components/Login/Login";
 import { Settings } from "./components/Settings";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
+import YourEvents from "./components/YourEvents/YourEvents";
 
 function App() {
   const { isStaff } = useAuth();
@@ -24,6 +25,7 @@ function App() {
 
           <Route path="/events" element={<EventList />} />
           <Route path="/events/:id" element={<EventPage />} />
+          <Route path="/your-events" element={<YourEvents />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/settings" element={<Settings />} />

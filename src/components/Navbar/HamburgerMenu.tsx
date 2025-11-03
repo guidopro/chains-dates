@@ -37,6 +37,12 @@ export default function HamburgerMenu({ isStaff }: HamburgerMenuProps) {
       {isOpen && (
         <div className="hamburger-container">
           <ul className="hamburger-links">
+            <li>
+              <Link to="your-events">
+                <i className="fa-solid fa-calendar"></i> Your Events
+              </Link>
+            </li>
+
             {isMobile && (
               <>
                 <li>
