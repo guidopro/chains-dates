@@ -7,7 +7,7 @@ export default function WelcomeUser() {
       {user ? (
         <p>Welcome {user.displayName}</p>
       ) : (
-        <p>Welcome to Chains & Discs</p>
+        <p>Welcome to Chains & Dates</p>
       )}
     </>
   );
