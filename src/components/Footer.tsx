@@ -1,4 +1,6 @@
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer
       style={{
@@ -10,7 +12,7 @@ export default function Footer() {
         marginTop: "100px",
       }}
     >
-      &copy; 2025 Chains & Dates. All rights reserved.
+      &copy; {year} Chains & Dates. All rights reserved.
     </footer>
   );
 }
