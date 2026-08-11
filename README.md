@@ -4,7 +4,7 @@
 Players can sign up for events, register their attendance, and optionally add those events directly to their **Google Calendar**.  
 Staff users can create and manage events through a secure admin interface.
 
-🌐 **Live App:** [https://chains-and-dates.web.app](https://chains-and-dates.web.app)
+🌐 **Live App:** [https://chainsanddates.netlify.app](https://chainsanddates.netlify.app)
 
 ---
 
