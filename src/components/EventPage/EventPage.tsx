@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEvent } from "../../hooks/useEvent";
 import {
   doc,
@@ -14,17 +14,24 @@ import { AddToCalendar } from "../../AddToCalendar";
 
 // styling
 import "./EventPage.css";
+import "./EventNavigation.css";
 import { formatEventTime } from "../../utils/formatEventTime";
 import WeatherWidget from "../WeatherWidget/WeatherWidget";
 import { useEffect, useState } from "react";
+import { getAdjacentEvents } from "../../utils/getAdjacentEvents";
+import PreviousEventButton from "./PreviousEventButton";
+import NextEventButton from "./NextEventButton";
 
 export default function EventPage() {
   const { id } = useParams(); // e.g. /events/:id
   const { event, loading, error } = useEvent(id!);
   const { user } = useAuth(); // current logged-in user
   const navigate = useNavigate();
+  const location = useLocation();
   const [attend, setAttend] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
+  const { events } = location.state || {};
+  const { previousEvent, nextEvent } = getAdjacentEvents(events, id!);
 
   useEffect(() => {
     if (user && event?.attendees) {
@@ -123,6 +130,16 @@ export default function EventPage() {
             </button>
             <AddToCalendar event={event} />
           </aside>
+        </div>
+      </div>
+
+      <div className="event-navigation">
+        <div className="previous-event">
+          <PreviousEventButton event={previousEvent} events={events} />
+        </div>
+
+        <div className="next-event">
+          <NextEventButton event={nextEvent} events={events} />
         </div>
       </div>
     </>

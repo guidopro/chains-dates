@@ -22,6 +22,8 @@ export default function WeatherWidget({
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const params = {
           latitude: 53.4809,
@@ -74,7 +76,7 @@ export default function WeatherWidget({
           `\nCoordinates: ${latitude}°N ${longitude}°E`,
           `\nElevation: ${elevation}m asl`,
           `\nTimezone: ${timezone} ${timezoneAbbreviation}`,
-          `\nTimezone difference to GMT+0: ${utcOffsetSeconds}s`
+          `\nTimezone difference to GMT+0: ${utcOffsetSeconds}s`,
         );
 
         const daily = response.daily()!;
@@ -89,7 +91,7 @@ export default function WeatherWidget({
             time: [
               ...Array(
                 (Number(daily.timeEnd()) - Number(daily.time())) /
-                  daily.interval()
+                  daily.interval(),
               ),
             ].map(
               (_, i) =>
@@ -97,8 +99,8 @@ export default function WeatherWidget({
                   (Number(daily.time()) +
                     i * daily.interval() +
                     utcOffsetSeconds) *
-                    1000
-                )
+                    1000,
+                ),
             ),
             temperature_2m_min: daily.variables(0)!.valuesArray(),
             temperature_2m_max: daily.variables(1)!.valuesArray(),
@@ -107,15 +109,15 @@ export default function WeatherWidget({
             sunrise: [...Array(sunrise.valuesInt64Length())].map(
               (_, i) =>
                 new Date(
-                  (Number(sunrise.valuesInt64(i)) + utcOffsetSeconds) * 1000
-                )
+                  (Number(sunrise.valuesInt64(i)) + utcOffsetSeconds) * 1000,
+                ),
             ),
             // Map Int64 values to according structure
             sunset: [...Array(sunset.valuesInt64Length())].map(
               (_, i) =>
                 new Date(
-                  (Number(sunset.valuesInt64(i)) + utcOffsetSeconds) * 1000
-                )
+                  (Number(sunset.valuesInt64(i)) + utcOffsetSeconds) * 1000,
+                ),
             ),
             uv_index_max: daily.variables(5)!.valuesArray(),
             apparent_temperature_max: daily.variables(6)!.valuesArray(),
@@ -144,14 +146,14 @@ export default function WeatherWidget({
         console.error(
           "Error fetching weather:",
           err.message,
-          typeof err.message
+          typeof err.message,
         );
 
         if (
           err.message.includes("Parameter 'start_date' is out of allowed range")
         ) {
           setError(
-            "Weather forecast unavailable: date is too far in the future."
+            "Weather forecast unavailable: date is too far in the future.",
           );
         } else {
           setError("Unable to fetch weather data.");
@@ -161,7 +163,7 @@ export default function WeatherWidget({
       }
     };
     fetchData();
-  }, []);
+  }, [startDate, endDate]);
 
   if (loading) return <p>Loading weather...</p>;
   if (error) {
