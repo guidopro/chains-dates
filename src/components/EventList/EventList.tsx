@@ -3,23 +3,11 @@ import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
 import ToggleViewButton from "./ToggleViewButton";
+import type { EventFirestore } from "../../types/Event";
 
 import "./EventList.css";
 import WelcomeUser from "../WelcomeUser";
 import { formatEventTime } from "../../utils/formatEventTime";
-
-interface EventFirestore {
-  id: string;
-  title: string;
-  description: string;
-  start: string;
-  end: string;
-  createdAt: string;
-  createdByName: string;
-  attendees: string[];
-  imageUrl: string;
-  isFree: boolean;
-}
 
 export default function EventList() {
   const [events, setEvents] = useState<EventFirestore[]>([]);
@@ -35,7 +23,7 @@ export default function EventList() {
       const q = query(
         eventsRef,
         where("start", ">=", now), // only upcoming events
-        orderBy("start", "asc") // earliest first
+        orderBy("start", "asc"), // earliest first
       );
 
       const querySnapshot = await getDocs(q);
@@ -108,6 +96,7 @@ export default function EventList() {
           <Link
             key={event.id}
             to={`/events/${event.id}`}
+            state={{ events }}
             className="event-card"
           >
             <div className="img-container">

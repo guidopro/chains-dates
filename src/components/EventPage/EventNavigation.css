@@ -1,0 +1,17 @@
+.event-navigation {
+  max-width: 1000px;
+  margin: 1rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.previous-event,
+.next-event {
+  width: 50%;
+}
+
+.next-event {
+  display: flex;
+  justify-content: flex-end;
+}
