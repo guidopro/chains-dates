@@ -8,6 +8,7 @@ import type { EventFirestore } from "../../types/Event";
 import "./EventList.css";
 import WelcomeUser from "../WelcomeUser";
 import { formatEventTime } from "../../utils/formatEventTime";
+import NextEvent from "./NextEvent";
 
 export default function EventList() {
   const [events, setEvents] = useState<EventFirestore[]>([]);
@@ -73,11 +74,14 @@ export default function EventList() {
     };
   }, [isMobile]);
 
+  console.log(events[0], "first event?");
+
   return (
     <div className="event-list-page">
       <div className="welcome">
         <WelcomeUser />
       </div>
+      {events.length > 0 && <NextEvent nextEvent={events[0]} />}
       <h2 className="upcoming-events">Upcoming Events</h2>
       {isMobile ? null : (
         <ToggleViewButton
