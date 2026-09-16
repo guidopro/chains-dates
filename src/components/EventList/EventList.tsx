@@ -81,7 +81,7 @@ export default function EventList() {
       <div className="welcome">
         <WelcomeUser />
       </div>
-      {events.length > 0 && <NextEvent nextEvent={events[0]} />}
+      {events.length > 0 && <NextEvent nextEvent={events[0]} events={events} />}
       <h2 className="upcoming-events">Upcoming Events</h2>
       {isMobile ? null : (
         <ToggleViewButton

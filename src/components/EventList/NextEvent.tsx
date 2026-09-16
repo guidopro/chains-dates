@@ -6,8 +6,10 @@ import "./NextEvent.css";
 
 export default function NextEvent({
   nextEvent,
+  events,
 }: {
   nextEvent: EventFirestore;
+  events: EventFirestore[];
 }) {
   const [timeLeft, setTimeLeft] = useState(0);
 
@@ -32,8 +34,12 @@ export default function NextEvent({
   return (
     <>
       <h2>Next Event</h2>
-      <div>
-        <Link to={`/events/${nextEvent.id}`} className="event-card">
+      <div className="next-event-container">
+        <Link
+          to={`/events/${nextEvent.id}`}
+          state={{ events }}
+          className="event-card"
+        >
           <div className="img-container">
             <img
               src={
